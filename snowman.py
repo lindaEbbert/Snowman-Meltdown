@@ -29,7 +29,7 @@ def get_word_state(secret_word, guessed_letters):
 def display_game_state(mistakes, secret_word, guessed_letters):
     """Prints the current state of the game to the console."""
     print(get_snowman_stage(mistakes)+"\n")
-    print(f"Word: {get_word_state(secret_word, guessed_letters)}")
+    print(f"Word: {get_word_state(secret_word, guessed_letters)}\n")
 
 
 def play_game():
@@ -48,6 +48,13 @@ def play_game():
         else:
             guessed_letters.append(guess)
         display_game_state(mistakes, secret_word, guessed_letters)
+        #if len(guessed_letters) != 0:
+        word_is_complete = "_" not in get_word_state(secret_word, guessed_letters)
+        if word_is_complete:
+            print("Congratulations! You saved the snowman!")
+            break
+    if mistakes == max_mistakes:
+        print(f"Game over! The word was: {secret_word}")
 
 if __name__ == "__main__":
     play_game()
