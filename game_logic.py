@@ -1,6 +1,8 @@
 import random
 from ascii_art import STAGES
-from validation_and_messages import get_single_letter_input, ask_if_user_wants_to_quit, reply_to_quit_request
+from validation_and_messages import get_single_letter_input, ask_if_user_wants_to_quit, reply_to_quit_request, \
+    print_gameover_message
+from validation_and_messages import WELCOME_MESSAGE, WINNING_MESSAGE
 
 # List of secret words
 WORDS = ["python", "git", "github", "snowman", "meltdown"]
@@ -34,10 +36,10 @@ def display_game_state(mistakes, secret_word, guessed_letters):
 
 def play_game():
     user_wants_to_quit = False
-    print("Welcome to Snowman Meltdown!")
+    print(WELCOME_MESSAGE)
     while not user_wants_to_quit:
         secret_word = get_random_word()
-        print("Secret word selected: " + secret_word)  # for testing, later remove this line
+        #print("Secret word selected: " + secret_word)  # for testing, later remove this line
         mistakes = 0
         max_mistakes = len(STAGES) - 1
         guessed_letters = []
@@ -51,12 +53,12 @@ def play_game():
             display_game_state(mistakes, secret_word, guessed_letters)
             word_is_complete = "_" not in get_word_state(secret_word, guessed_letters)
             if word_is_complete:
-                print("Congratulations! You saved the snowman!")
+                print(WINNING_MESSAGE)
                 user_wants_to_quit = ask_if_user_wants_to_quit()
                 reply_to_quit_request(user_wants_to_quit)
                 break
         if mistakes == max_mistakes:
-            print(f"Game over! The word was: {secret_word}")
+            print_gameover_message(secret_word)
             user_wants_to_quit = ask_if_user_wants_to_quit()
             reply_to_quit_request(user_wants_to_quit)
 
