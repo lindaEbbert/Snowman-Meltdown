@@ -39,7 +39,6 @@ def play_game():
     print(WELCOME_MESSAGE)
     while not user_wants_to_quit:
         secret_word = get_random_word()
-        #print("Secret word selected: " + secret_word)  # for testing, later remove this line
         mistakes = 0
         max_mistakes = len(STAGES) - 1
         guessed_letters = []
