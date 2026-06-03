@@ -1,5 +1,6 @@
 import random
 from ascii_art import STAGES
+from validation import get_single_letter_input
 
 # List of secret words
 WORDS = ["python", "git", "github", "snowman", "meltdown"]
@@ -40,14 +41,12 @@ def play_game():
     guessed_letters = []
 
     while mistakes < max_mistakes:
-        # For now, simply prompt the user once:
-        guess = input("Guess a letter: ").lower()
+        guess = get_single_letter_input().lower()
         if guess not in secret_word:
             mistakes += 1
         else:
             guessed_letters.append(guess)
         display_game_state(mistakes, secret_word, guessed_letters)
-        #if len(guessed_letters) != 0:
         word_is_complete = "_" not in get_word_state(secret_word, guessed_letters)
         if word_is_complete:
             print("Congratulations! You saved the snowman!")
