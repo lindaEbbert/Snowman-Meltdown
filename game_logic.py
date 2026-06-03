@@ -9,7 +9,6 @@ def get_random_word():
     """Selects a random word from the list."""
     return WORDS[random.randint(0, len(WORDS) - 1)]
 
-
 def get_snowman_stage(mistakes):
     """Returns the current stage of the snowman based on the number of mistakes."""
     return STAGES[mistakes]
